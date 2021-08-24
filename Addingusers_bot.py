@@ -25,15 +25,15 @@ SLEEP_TIME_1 = 100
 SLEEP_TIME_2 = 100
 
 
-async def main():
-    await client.send_message('me', 'Hello !!!!')
-with client:
-    client.loop.run_until_complete(main())
-client.connect()
-if not client.is_user_authorized():
-    client.send_code_request(phone)
-    client.sign_in(phone, input('Enter verification code: '))
-print('client connection established!')
+# async def main():
+#     await client.send_message('me', 'Hello !!!!')
+# with client:
+#     client.loop.run_until_complete(main())
+# client.connect()
+# if not client.is_user_authorized():
+#     client.send_code_request(phone)
+#     client.sign_in(phone, input('Enter verification code: '))
+# print('client connection established!')
 BOT_TOKEN = '1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc'
 
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -160,7 +160,7 @@ dispatcher = updater.dispatcher
 def start(update: Update, context: CallbackContext):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text= "Showing you the group list...\nUse /groups command to confirm"
+        text= "Showing you the group list...\nUse /groups command to confirm",
     )
 
 
