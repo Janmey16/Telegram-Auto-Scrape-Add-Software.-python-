@@ -34,9 +34,10 @@ from telegram.ext import *
 #     client.send_code_request(phone)
 #     client.sign_in(phone, input('Enter verification code: '))
 # print('client connection established!')
-BOT_TOKEN = '1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc'
+# BOT_TOKEN = '1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc'
 
-bot = telebot.TeleBot(BOT_TOKEN)
+# bot = telebot.TeleBot(BOT_TOKEN)
+bot =Bot("1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc")
 updater = Updater(
     "1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc", use_context=True)
 dispatcher = updater.dispatcher
