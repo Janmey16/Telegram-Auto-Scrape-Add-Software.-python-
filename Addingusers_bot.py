@@ -4,8 +4,6 @@ from telethon.tl.types import InputPeerEmpty, InputPeerChannel, InputPeerUser
 from telethon.sync import TelegramClient
 from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError
 from telethon.tl.functions.channels import InviteToChannelRequest
-from telegram import *
-from telegram.ext import *
 import sys
 import csv
 import re
@@ -13,31 +11,36 @@ import traceback
 import time
 import random
 import telebot
-
+from telegram import *
+from telegram.ext import *
 
 # api
-# api_id = 7478146
+api_id = 7478146
 # hash
-# api_hash = 'f481ce610cbe3fd47e9402f9771f18b3'
-# phone = '+918976826588'
-# client = TelegramClient(phone, api_id, api_hash)
+api_hash = 'f481ce610cbe3fd47e9402f9771f18b3'
+phone = '+918976826588'
+client = TelegramClient(phone, api_id, api_hash)
 
-# SLEEP_TIME_1 = 100
-# SLEEP_TIME_2 = 100
+SLEEP_TIME_1 = 100
+SLEEP_TIME_2 = 100
 
 
-# async def main():
-#     await client.send_message('me', 'Hello !!!!')
-# with client:
-#     client.loop.run_until_complete(main())
-# client.connect()
-# if not client.is_user_authorized():
-#     client.send_code_request(phone)
-#     client.sign_in(phone, input('Enter verification code: '))
-# print('client connection established!')
+async def main():
+    await client.send_message('me', 'Hello !!!!')
+with client:
+    client.loop.run_until_complete(main())
+client.connect()
+if not client.is_user_authorized():
+    client.send_code_request(phone)
+    client.sign_in(phone, input('Enter verification code: '))
+print('client connection established!')
 BOT_TOKEN = '1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc'
 
 bot = telebot.TeleBot(BOT_TOKEN)
+updater = Updater(
+    "1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc", use_context=True)
+dispatcher = updater.dispatcher
+
 
 # print('authenticated!')
 
@@ -153,24 +156,29 @@ bot = telebot.TeleBot(BOT_TOKEN)
 #         bot.reply_to(message, 'oooops')
 
 
-@bot.message_handler(commands=['start'])
-def start(message):
-    sent = bot.send_message(
-        message.chat.id, 'Showing you the group list...\nUse /groups command to confirm')
+# @bot.message_handler(commands=['start'])
+def start(update: Update, context: CallbackContext):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text= "Showing you the group list...\nUse /groups command to confirm")
 
 
-@bot.message_handler(commands=['groups'])
-def before_scrape(message):
+# @bot.message_handler(commands=['groups'])
+# def before_scrape(message):
 
-    bot.send_message(message.chat.id, group_list)
-    source = bot.send_message(message.chat.id, "Select the source group:")
-    # print(source)
-    bot.register_next_step_handler(source, scrape_members)
-
-
-bot.enable_save_next_step_handlers(delay=10)
-bot.load_next_step_handlers()
+#     bot.send_message(message.chat.id, group_list)
+#     source = bot.send_message(message.chat.id, "Select the source group:")
+#     # print(source)
+#     bot.register_next_step_handler(source, scrape_members)
 
 
-if __name__ == '__main__':
-    bot.polling()
+# bot.enable_save_next_step_handlers(delay=10)
+# bot.load_next_step_handlers()
+
+
+# if __name__ == '__main__':
+#     bot.polling()
+
+start_value = CommandHandler('start', start)
+dispatcher.add_handler(start_value)
+updater.start_polling()
