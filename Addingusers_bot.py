@@ -159,8 +159,7 @@ dispatcher = updater.dispatcher
 # @bot.message_handler(commands=['start'])
 def start(update: Update, context: CallbackContext):
     bot.send_message(
-        chat_id=update.effective_chat.id,
-        text= "Showing you the group list...\nUse /groups command to confirm")
+        message.chat.id, 'Showing you the group list...\nUse /groups command to confirm')
 
 
 # @bot.message_handler(commands=['groups'])
