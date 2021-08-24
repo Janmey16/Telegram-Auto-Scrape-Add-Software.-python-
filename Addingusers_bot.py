@@ -1,39 +1,39 @@
-from telethon.sync import TelegramClient
-from telethon.tl.functions.messages import GetDialogsRequest
-from telethon.tl.types import InputPeerEmpty, InputPeerChannel, InputPeerUser
-from telethon.sync import TelegramClient
-from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError
-from telethon.tl.functions.channels import InviteToChannelRequest
-import sys
-import csv
-import re
-import traceback
-import time
-import random
+# from telethon.sync import TelegramClient
+# from telethon.tl.functions.messages import GetDialogsRequest
+# from telethon.tl.types import InputPeerEmpty, InputPeerChannel, InputPeerUser
+# from telethon.sync import TelegramClient
+# from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError
+# from telethon.tl.functions.channels import InviteToChannelRequest
+# import sys
+# import csv
+# import re
+# import traceback
+# import time
+# import random
 import telebot
 from telegram import *
 from telegram.ext import *
 
 # api
-api_id = 7478146
-# hash
-api_hash = 'f481ce610cbe3fd47e9402f9771f18b3'
-phone = '+918976826588'
-client = TelegramClient(phone, api_id, api_hash)
+# api_id = 7478146
+# # hash
+# api_hash = 'f481ce610cbe3fd47e9402f9771f18b3'
+# phone = '+918976826588'
+# client = TelegramClient(phone, api_id, api_hash)
 
-SLEEP_TIME_1 = 100
-SLEEP_TIME_2 = 100
+# SLEEP_TIME_1 = 100
+# SLEEP_TIME_2 = 100
 
 
-async def main():
-    await client.send_message('me', 'Hello !!!!')
-with client:
-    client.loop.run_until_complete(main())
-client.connect()
-if not client.is_user_authorized():
-    client.send_code_request(phone)
-    client.sign_in(phone, input('Enter verification code: '))
-print('client connection established!')
+# async def main():
+#     await client.send_message('me', 'Hello !!!!')
+# with client:
+#     client.loop.run_until_complete(main())
+# client.connect()
+# if not client.is_user_authorized():
+#     client.send_code_request(phone)
+#     client.sign_in(phone, input('Enter verification code: '))
+# print('client connection established!')
 BOT_TOKEN = '1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc'
 
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -160,7 +160,8 @@ dispatcher = updater.dispatcher
 def start(update: Update, context: CallbackContext):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text="Showing you the group list...\nUse /groups command to confirm")
+        text="Showing you the group list...\nUse /groups command to confirm",
+    )
 
 
 # @bot.message_handler(commands=['groups'])
