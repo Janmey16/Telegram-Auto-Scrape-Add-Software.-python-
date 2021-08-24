@@ -9,7 +9,7 @@ dispatcher = updater.dispatcher
 def start(update: Update, context: CallbackContext):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text = ("Heyy. Let me show you the group list. \nUse /groups command to agree")
+        text = ("Let me show you the group list. \nUse /groups command to agree")
     )
         
 start_value = CommandHandler('start', start)
