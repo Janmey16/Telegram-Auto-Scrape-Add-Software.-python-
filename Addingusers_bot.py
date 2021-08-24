@@ -9,7 +9,7 @@ dispatcher = updater.dispatcher
 def onstart(update: Update, context: CallbackContext):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text = ("Let me show you the group list. \nUse /groups command to agree")
+        text = ("Now Let me show you the group list. \nUse /groups command to agree")
         bot.register_next_step_handler(text, ongroups)
     )
     
