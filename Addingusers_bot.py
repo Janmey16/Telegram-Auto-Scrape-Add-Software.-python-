@@ -4,6 +4,8 @@ from telethon.tl.types import InputPeerEmpty, InputPeerChannel, InputPeerUser
 from telethon.sync import TelegramClient
 from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError
 from telethon.tl.functions.channels import InviteToChannelRequest
+from telegram import *
+from telegram.ext import *
 import sys
 import csv
 import re
