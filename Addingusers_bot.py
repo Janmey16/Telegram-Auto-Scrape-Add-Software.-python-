@@ -3,16 +3,23 @@ from telegram.ext import *
 from telethon import *
 import telebot
 
-BOT_TOKEN = '1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc'
+bot = Bot("1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc")
+# print(bot.get_me())
+updater = Updater(
+    "1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc", use_context=True)
+dispatcher = updater.dispatcher
 
-bot = telebot.TeleBot(BOT_TOKEN)
 
-@bot.message_handler(commands=['start'])
-def main(message):
-    sent = bot.send_message(
-        message.chat.id, 'Showing you the group list...\nUse /groups command to confirm')
+def start(update: Update, context: CallbackContext):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Hello Janmey!
+    )
     
-if __name__ == '__main__':
-    bot.polling()
+ 
+
+start_value = CommandHandler('start', start)
+dispatcher.add_handler(start_value)
+updater.start_polling()
 
 
