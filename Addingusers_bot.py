@@ -8,15 +8,14 @@ updater = Updater(
 dispatcher = updater.dispatcher
 
 
-def test_function(update: Update, context: CallbackContext):
+def onstart(update: Update, context: CallbackContext):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text="tutorial link : https://www.youtube.com/watch?v=NwBWW8cNCP4&t=59s",
-        print("yes")
+        text="Running start function",
     )
     
  
 
-start_value = CommandHandler('motion_detection', test_function)
+start_value = CommandHandler('start', onstart)
 dispatcher.add_handler(start_value)
 updater.start_polling()
