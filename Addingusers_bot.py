@@ -11,7 +11,7 @@ dispatcher = updater.dispatcher
 def onstart(update: Update, context: CallbackContext):
     bot.send_message(
         chat_id=update.effective_chat.id,
-        text="Running start function",
+        text="Running the start function now!",
     )
     
  
