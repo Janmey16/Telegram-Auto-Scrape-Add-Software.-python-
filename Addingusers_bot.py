@@ -25,6 +25,33 @@ bot = telebot.TeleBot(BOT_TOKEN)
 # phone = '+918976826588'
 # client = TelegramClient()
 
+def scrape_members(message):
+    try:
+        source_group = message.text
+        destination = bot.send_message(
+            message.chat.id, "Enter Destination Group:")
+        # print(destination)
+        # bot.register_next_step_handler(destination, add_members)
+        # print(message.text)
+    except Exception as e:
+        bot.reply_to(message, 'oooops')
+
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.send_message(
+        message.chat.id, 'Showing you the group list...\nUse /groups command to confirm')
+    
+
+@bot.message_handler(commands=['groups'])
+def before_scrape(message):
+    # printing the group list in chat section.
+    bot.send_message(message.chat.id, group_list)
+    source = bot.send_message(message.chat.id, "Select the source group:")
+    # store user input into source_group:
+    source_group = source.text
+    bot.register_next_step_handler(source, scrape_members)
+
 SLEEP_TIME_1 = 100
 SLEEP_TIME_2 = 100
 
@@ -139,32 +166,7 @@ mode = 2
 #             continue
 
 
-def scrape_members(message):
-    try:
-        source_group = message.text
-        destination = bot.send_message(
-            message.chat.id, "Enter Destination Group:")
-        # print(destination)
-        # bot.register_next_step_handler(destination, add_members)
-        # print(message.text)
-    except Exception as e:
-        bot.reply_to(message, 'oooops')
 
-
-@bot.message_handler(commands=['start'])
-def main(message):
-    bot.send_message(
-        message.chat.id, 'Showing you the group list...\nUse /groups command to confirm')
-    
-
-@bot.message_handler(commands=['groups'])
-def before_scrape(message):
-    # printing the group list in chat section.
-    bot.send_message(message.chat.id, group_list)
-    source = bot.send_message(message.chat.id, "Select the source group:")
-    # store user input into source_group:
-    source_group = source.text
-    bot.register_next_step_handler(source, scrape_members)
 
 
 bot.enable_save_next_step_handlers(delay=10)
