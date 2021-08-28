@@ -152,7 +152,7 @@ def scrape_members(message):
 
 
 @bot.message_handler(commands=['start'])
-def start(message):
+def main(message):
     bot.send_message(
         message.chat.id, 'Showing you the group list...\nUse /groups command to confirm')
     
