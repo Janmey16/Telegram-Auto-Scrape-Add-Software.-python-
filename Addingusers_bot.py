@@ -15,15 +15,19 @@ import telebot
 
 BOT_TOKEN = '1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc'
 bot = telebot.TeleBot(BOT_TOKEN)
-# bot.get_api_id()
-# bot.get_api_hash()
-# constants and establishing connection with client.
-# api
-# api_id = 7478146
-# # hash
-# api_hash = 'f481ce610cbe3fd47e9402f9771f18b3'
-# phone = '+918976826588'
-# client = TelegramClient()
+
+updater = Updater(
+    "1910773191:AAFXjLzXfjbOK1VnGqmaz6ea37noZCsURtc", use_context=True)
+dispatcher = updater.dispatcher
+
+
+client = TelegramClient()
+
+def test_function(update: Update, context: CallbackContext):
+    bot.send_message(
+        chat_id=update.effective_chat.id,
+        text="Heyy",
+    )
 
 def scrape_members(message):
     try:
@@ -43,6 +47,9 @@ def start(message):
         message.chat.id, 'Showing you the group list...\nUse /groups command to confirm')
     
 
+
+    
+    
 @bot.message_handler(commands=['groups'])
 def before_scrape(message):
     # printing the group list in chat section.
@@ -166,7 +173,8 @@ mode = 2
 #             continue
 
 
-
+start_value = CommandHandler('hey', test_function)
+dispatcher.add_handler(start_value)
 
 
 bot.enable_save_next_step_handlers(delay=10)
